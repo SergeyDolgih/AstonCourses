@@ -1,7 +1,15 @@
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 public class MtsByPage2Test extends MtsBy2Page {
+
+    @BeforeTest
+    public void setUp() {
+        System.setProperty("web-driver.chrome.driver", "C:\\Users\\100nout\\IdeaProjects\\AstonCourses\\src\\main\\resources\\chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.get("https://mts.by/");
+    }
 
     @Test(description = "Проверка надписей в незаполненном поле 'Услуги связи'")
     void checkCommunicationServices() {
@@ -57,5 +65,10 @@ public class MtsByPage2Test extends MtsBy2Page {
         Assert.assertEquals(driver.findElement(cardCVC).getAttribute("outerText"), "CVC");
         Assert.assertEquals(driver.findElement(cardName).getAttribute("outerText"), "Имя держателя (как на карте)");
         Assert.assertEquals(driver.findElement(buttonGPay).getAttribute("ariaLabel"), "Google Pay");
+    }
+
+    @AfterTest
+    public void tearDown() {
+        driver.quit();
     }
 }

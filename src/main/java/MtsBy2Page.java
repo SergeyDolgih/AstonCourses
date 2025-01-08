@@ -31,13 +31,6 @@ public class MtsBy2Page {
     public By cardName = By.xpath("//label[@class='ng-tns-c46-3 ng-star-inserted']");
     public By buttonGPay = By.xpath("//button[@class='gpay-card-info-container black plain short en border-inset']");
 
-    @BeforeTest
-    public void setUp() {
-        System.setProperty("web-driver.chrome.driver", "C:\\Users\\100nout\\IdeaProjects\\AstonCourses\\src\\main\\resources\\chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.get("https://mts.by/");
-    }
-
     public void handleCookiePopup() {
         By cookieButtonLocator = By.xpath("//button[@class='btn btn_black cookie__ok']");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
@@ -78,10 +71,5 @@ public class MtsBy2Page {
                 .click();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='bepaid-iframe']")));
-    }
-
-    @AfterTest
-    public void tearDown() {
-        driver.quit();
     }
 }
